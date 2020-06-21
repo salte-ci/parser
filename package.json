@@ -1,6 +1,6 @@
 {
   "name": "@salte-ci/parser",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Normalizes the .salte-ci.yml file!",
   "source": "src/parser.ts",
   "main": "dist/parser.js",
