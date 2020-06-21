@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import YAML from 'yaml';
 
 import { expect } from 'chai';
@@ -7,7 +9,7 @@ import { ParsingException } from '../errors';
 
 describe('Parser', () => {
   describe('func(parse)', () => {
-    it('should parse the yaml file successfully', () => {
+    it('should parse the yaml successfully', () => {
       const expectedOutput = {
         image: 'node:alpine',
         steps: [
@@ -18,6 +20,15 @@ describe('Parser', () => {
       const yaml = YAML.stringify(expectedOutput);
 
       expect(parse(yaml)).deep.equals(expectedOutput)
+    });
+
+    it('should parse the yaml file successfully', () => {
+      expect(parse(fs.readFileSync(path.join(__dirname, './examples/.salte-ci.yml'), 'UTF8'))).deep.equals({
+        image: 'node:alpine',
+        steps: [
+          'npm ci',
+        ],
+      })
     });
 
     it('should throw an error if the input is missing', () => {

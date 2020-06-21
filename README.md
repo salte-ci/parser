@@ -23,7 +23,7 @@ import { parse } from '@salte-ci/parser';
 // steps:
 //  - npm ci
 
-const output = parse(fs.readFileSync('.salte-ci.yml'));
+const output = parse(fs.readFileSync('.salte-ci.yml', 'UTF8'));
 
 // Output:
 // { 
