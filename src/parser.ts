@@ -1,8 +1,6 @@
 import YAML from 'yaml';
 import outdent from 'outdent';
-import { Raw, Parsed } from './types';
 import { ParsingException } from './errors';
-
 
 /**
  *
@@ -51,4 +49,30 @@ export function parse(yaml: string): Parsed {
     image,
     steps,
   };
+}
+
+export { ParsingException } from './errors';
+
+export interface Raw {
+  /**
+   * The Docker image.
+   */
+  image?: string;
+
+  /**
+   * The steps to execute.
+   */
+  steps?: string[];
+}
+
+export interface Parsed {
+  /**
+   * The Docker image.
+   */
+  image: string;
+
+  /**
+   * The steps to execute.
+   */
+  steps: string[];
 }
