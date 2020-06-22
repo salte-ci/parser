@@ -22,6 +22,22 @@ describe('Parser', () => {
       expect(parse(yaml)).deep.equals(expectedOutput)
     });
 
+    it('should ignore unknown properties', () => {
+      const expectedOutput = {
+        image: 'node:alpine',
+        steps: [
+          'npm ci',
+        ],
+      };
+
+      const yaml = YAML.stringify({
+        ...expectedOutput,
+        hello: 'world',
+      });
+
+      expect(parse(yaml)).deep.equals(expectedOutput)
+    });
+
     it('should parse the yaml file successfully', () => {
       expect(parse(fs.readFileSync(path.join(__dirname, './examples/.salte-ci.yml'), 'UTF8'))).deep.equals({
         image: 'node:alpine',

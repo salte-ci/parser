@@ -17,7 +17,7 @@ export class ParsingException extends Error {
 }
 
 export declare namespace ParsingException {
-  type Codes = ('malformed_yaml');
+  type Codes = ('malformed_yaml'|'invalid_property_type');
   type Options = {
     message: string;
     code: Codes;
