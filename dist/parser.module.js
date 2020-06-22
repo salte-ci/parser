@@ -25,7 +25,7 @@ class ParsingException extends Error {
 function parse(yaml) {
   const output = YAML.parse(yaml);
 
-  if (!output || typeof output !== 'object' || Array.isArray(output) || typeof output.image !== 'string' || !Array.isArray(output.steps) || output.steps.length === 0) {
+  if (!output || typeof output !== 'object' || Array.isArray(output)) {
     throw new ParsingException({
       message: outdent`
         Expected "{{filename}}" match the following format.
@@ -38,9 +38,35 @@ function parse(yaml) {
     });
   }
 
+  const {
+    image,
+    steps
+  } = output;
+
+  if (typeof image !== 'string') {
+    throw new ParsingException({
+      message: 'The "image" property must be a string.',
+      code: 'invalid_property_type'
+    });
+  }
+
+  if (!Array.isArray(steps)) {
+    throw new ParsingException({
+      message: 'The "steps" property must be a list.',
+      code: 'invalid_property_type'
+    });
+  }
+
+  if (steps.length === 0) {
+    throw new ParsingException({
+      message: `The "steps" property can't be empty.`,
+      code: 'invalid_property_type'
+    });
+  }
+
   return {
-    image: output.image,
-    steps: output.steps
+    image,
+    steps
   };
 }
 

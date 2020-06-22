@@ -6,7 +6,7 @@ export declare class ParsingException extends Error {
     constructor({ message, code }: ParsingException.Options);
 }
 export declare namespace ParsingException {
-    type Codes = ('malformed_yaml');
+    type Codes = ('malformed_yaml' | 'invalid_property_type');
     type Options = {
         message: string;
         code: Codes;
