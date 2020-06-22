@@ -70,5 +70,5 @@ function parse(yaml) {
   };
 }
 
-export { parse };
+export { ParsingException, parse };
 //# sourceMappingURL=parser.module.js.map

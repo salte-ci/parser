@@ -72,5 +72,6 @@ function parse(yaml) {
   };
 }
 
+exports.ParsingException = ParsingException;
 exports.parse = parse;
 //# sourceMappingURL=parser.js.map
